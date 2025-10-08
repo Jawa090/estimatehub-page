@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Check, Award, Clock, BarChart, Users, Building, Globe, Zap, ArrowRight } from 'lucide-react';
 
 const WhyChooseUs = () => {
@@ -67,26 +66,13 @@ const WhyChooseUs = () => {
             <h3 className="font-bold mb-2">Continuous Innovation</h3>
             <p>We invest in the latest estimating technologies and methodologies to maintain our competitive edge.</p>
           </div>
+          <div className="bg-gray-50 p-6 rounded-lg shadow">
+            <h3 className="font-bold mb-2">24/7 Availability</h3>
+            <p>Round-the-clock support and emergency estimating services to meet your project deadlines, no matter the time zone.</p>
+          </div>
         </div>
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h3 className="text-2xl font-bold text-construction-blue mb-4">Client Success Stories</h3>
-          <ul className="list-disc ml-5 text-gray-700 text-left inline-block">
-            <li>25% improvement in bid accuracy</li>
-            <li>40% reduction in estimate preparation time</li>
-            <li>30% increase in successful bid awards</li>
-            <li>Significant cost savings on material procurement</li>
-          </ul>
-        </div>
-        <div className="max-w-4xl mx-auto text-center mb-8">
-          <h3 className="text-2xl font-bold text-construction-blue mb-4">Get Started Today</h3>
-          <p className="text-lg mb-6">Ready to transform your estimating process and secure more profitable projects? Contact our team of experts to discuss your project requirements and discover how EstimatingHub can help you win more bids while maximizing profitability.</p>
-          <Link
-            to="/contact"
-            className="inline-flex items-center bg-construction-orange hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors duration-300"
-          >
-            Contact Our Experts <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
-        </div>
+
+
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-gray-100 p-6 rounded-lg shadow">
             <h4 className="font-bold mb-2">Monthly Partnership Programs</h4>

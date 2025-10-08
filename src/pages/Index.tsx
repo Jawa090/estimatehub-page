@@ -3,13 +3,17 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import StatsCounter from '@/components/StatsCounter';
 import CallToAction from '@/components/CallToAction';
-import ServicesOverviewHome from '@/components/ServicesOverviewHome';
+
 import Clients from '@/components/Clients';
 import Testimonials from '@/components/Testimonials';
 import ChatWidget from '@/components/ChatWidget';
 import BackToTop from '@/components/BackToTop';
 import Footer from '@/components/Footer';
 import WhyChooseUs from '@/components/WhyChooseUs';
+import Portfolio from '@/components/Portfolio';
+
+import About from '@/components/About';
+import WelcomePopup from '@/components/WelcomePopup';
 
 const Index = () => {
   useEffect(() => {
@@ -51,21 +55,29 @@ const Index = () => {
       <div id="home">
         <Hero />
       </div>
-      <div id="services">
-        <ServicesOverviewHome />
-      </div>
+
       <StatsCounter />
       <WhyChooseUs />
+      <div id="about">
+        <About />
+      </div>
+      <div id="portfolio">
+        <Portfolio />
+      </div>
       <div id="clients">
         <Clients />
       </div>
       <div id="testimonials">
         <Testimonials />
       </div>
+
       <CallToAction />
       <Footer />
       <ChatWidget />
       <BackToTop />
+      
+      {/* Welcome Popup */}
+      <WelcomePopup />
     </div>
   );
 };

@@ -74,15 +74,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-poppins font-bold mb-3 text-construction-blue" data-aos="fade-up">
-            Get In Touch
-          </h2>
-          <div className="w-20 h-1 bg-construction-orange mx-auto mb-6" data-aos="fade-up" data-aos-delay="100"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">
-            Ready to start your project? Contact us today for a free consultation
-          </p>
-        </div>
+
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* Contact Form Section */}

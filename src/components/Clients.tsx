@@ -37,12 +37,16 @@ const Clients = () => {
 
     let animationId: number;
     let scrollPosition = 0;
+    const scrollSpeed = 0.5; // Adjusted speed for better visibility
 
     const scroll = () => {
       if (!scrollContainer) return;
 
-      scrollPosition += 0.5;
-      if (scrollPosition >= scrollContainer.scrollWidth / 2) {
+      scrollPosition += scrollSpeed;
+      
+      // Reset when we've scrolled through half the content (since we duplicate the logos)
+      const maxScroll = scrollContainer.scrollWidth / 2;
+      if (scrollPosition >= maxScroll) {
         scrollPosition = 0;
       }
 
@@ -50,10 +54,16 @@ const Clients = () => {
       animationId = requestAnimationFrame(scroll);
     };
 
-    animationId = requestAnimationFrame(scroll);
+    // Start animation after a short delay
+    const startDelay = setTimeout(() => {
+      animationId = requestAnimationFrame(scroll);
+    }, 500);
 
     return () => {
-      cancelAnimationFrame(animationId);
+      clearTimeout(startDelay);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
     };
   }, []);
 
@@ -72,31 +82,42 @@ const Clients = () => {
         </div>
 
         <div className="relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
-          {/* Gradient overlay for seamless scrolling effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-50 to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-50 to-transparent z-10"></div>
+          {/* Enhanced gradient overlays for seamless scrolling effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-gray-50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-gray-50 to-transparent z-10 pointer-events-none"></div>
+          
+          {/* Subtle shadow overlay for depth */}
+          <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-gray-100 to-transparent z-5"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-gray-100 to-transparent z-5"></div>
           
           <div 
             ref={scrollContainerRef}
-            className="flex items-center space-x-8 overflow-x-scroll scrollbar-none py-8"
-            style={{ minWidth: "100%", scrollBehavior: "smooth" }}
+            className="flex items-center space-x-12 overflow-x-hidden py-12"
+            style={{ 
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch"
+            }}
           >
-            {/* Repeat the client logos 4 times for a longer infinite scroll */}
-            {[...Array(4)].flatMap(() => clientLogos).map((client, index) => (
+            {/* Repeat the client logos 6 times for a longer, more seamless infinite scroll */}
+            {[...Array(6)].flatMap(() => clientLogos).map((client, index) => (
               <Card 
                 key={index} 
-                className="flex-shrink-0 transition-all hover:scale-105 duration-300 shadow-lg overflow-hidden border border-gray-200 hover:border-red-400 group w-[200px] md:w-[240px]"
+                className="flex-shrink-0 transition-all duration-500 hover:scale-110 hover:shadow-2xl shadow-lg overflow-hidden border border-gray-200 hover:border-construction-orange group w-[220px] md:w-[260px] bg-white/80 backdrop-blur-sm"
+                style={{
+                  animationDelay: `${index * 0.1}s`
+                }}
               >
-                <div className="flex items-center justify-center bg-white" style={{ height: "100px" }}>
+                <div className="flex items-center justify-center bg-gradient-to-br from-white to-gray-50" style={{ height: "120px" }}>
                   <img 
                     src={client.logo} 
                     alt={`${client.name} logo`}
-                    className="object-contain w-[140px] h-[80px] grayscale hover:grayscale-0 transition-all duration-300 group-hover:grayscale-0"
+                    className="object-contain w-[160px] h-[90px] grayscale hover:grayscale-0 transition-all duration-500 group-hover:grayscale-0 filter drop-shadow-sm"
                     loading="lazy"
                   />
                 </div>
-                <div className="p-3 bg-white group-hover:bg-red-50 transition-colors">
-                  <h3 className="font-medium text-sm text-center text-gray-800 group-hover:text-construction-orange transition-colors">{client.name}</h3>
+                <div className="p-4 bg-gradient-to-r from-white to-gray-50 group-hover:from-construction-orange/5 group-hover:to-construction-orange/10 transition-all duration-500">
+                  <h3 className="font-semibold text-sm text-center text-gray-800 group-hover:text-construction-orange transition-colors duration-500">{client.name}</h3>
                 </div>
               </Card>
             ))}
