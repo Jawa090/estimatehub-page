@@ -1,7 +1,10 @@
 
+import { useState } from "react";
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin, Clock, Award, Shield, ArrowRight } from "lucide-react";
+import PrivacyPolicy from "./PrivacyPolicy";
 
 const Footer = () => {
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -23,9 +26,9 @@ const Footer = () => {
               Get the latest construction trends, estimating tips, and project insights delivered to your inbox.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Enter your email address" 
+              <input
+                type="email"
+                placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
               />
               <button className="bg-white text-construction-blue px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center">
@@ -45,10 +48,10 @@ const Footer = () => {
               <img src="/uploads/0d18cc57-bb81-4f64-9666-a22d86046947.png" alt="EstimatingHub Logo" className="h-12" />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Your trusted partner for professional construction estimating services. We deliver accurate, 
+              Your trusted partner for professional construction estimating services. We deliver accurate,
               detailed estimates that help you win more projects and maximize profitability.
             </p>
-            
+
             {/* Trust Indicators */}
             <div className="space-y-3 mb-6">
               <div className="flex items-center text-sm text-gray-300">
@@ -70,10 +73,10 @@ const Footer = () => {
               <a href="#" className="bg-gray-700 p-2 rounded-lg hover:bg-construction-orange transition-colors">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="bg-gray-700 p-2 rounded-lg hover:bg-construction-orange transition-colors">
+              <a href="https://x.com/estimatinghub" target="_blank" rel="noopener noreferrer" className="bg-gray-700 p-2 rounded-lg hover:bg-construction-orange transition-colors">
                 <Twitter size={18} />
               </a>
-              <a href="#" className="bg-gray-700 p-2 rounded-lg hover:bg-construction-orange transition-colors">
+              <a href="https://www.linkedin.com/company/estimatinghub/" target="_blank" rel="noopener noreferrer" className="bg-gray-700 p-2 rounded-lg hover:bg-construction-orange transition-colors">
                 <Linkedin size={18} />
               </a>
               <a href="#" className="bg-gray-700 p-2 rounded-lg hover:bg-construction-orange transition-colors">
@@ -81,7 +84,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          
+
           {/* Services */}
           <div>
             <h3 className="text-xl font-semibold mb-6 text-construction-orange">Our Services</h3>
@@ -124,7 +127,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          
+
           {/* Quick Links */}
           <div>
             <h3 className="text-xl font-semibold mb-6 text-construction-orange">Quick Links</h3>
@@ -167,7 +170,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          
+
           {/* Contact Info */}
           <div>
             <h3 className="text-xl font-semibold mb-6 text-construction-orange">Get In Touch</h3>
@@ -198,7 +201,7 @@ const Footer = () => {
 
             {/* CTA Button */}
             <div className="mt-6">
-              <button 
+              <button
                 onClick={() => scrollToSection('home')}
                 className="bg-construction-orange hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors w-full"
               >
@@ -207,27 +210,35 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Bottom Section */}
         <hr className="border-gray-700 my-12" />
-        
+
         <div className="flex flex-col lg:flex-row justify-between items-center">
           <div className="flex flex-col md:flex-row items-center mb-4 lg:mb-0">
             <p className="text-gray-400 text-sm mb-2 md:mb-0 md:mr-8">
               © {new Date().getFullYear()} EstimatingHub. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-construction-orange text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-construction-orange text-sm transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-400 hover:text-construction-orange text-sm transition-colors">Cookie Policy</a>
+              <button 
+                onClick={() => setShowPrivacyPolicy(true)}
+                className="text-gray-400 hover:text-construction-orange text-sm transition-colors"
+              >
+                Privacy Policy
+              </button>
             </div>
           </div>
-          
+
           <div className="text-sm text-gray-400">
             <p>Licensed & Insured • Certified Professionals • 24/7 Support</p>
           </div>
         </div>
       </div>
+
+      {/* Privacy Policy Modal */}
+      {showPrivacyPolicy && (
+        <PrivacyPolicy onClose={() => setShowPrivacyPolicy(false)} />
+      )}
     </footer>
   );
 };
